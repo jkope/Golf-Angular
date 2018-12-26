@@ -7,6 +7,7 @@ import { MaterialModule } from './material/material.module';
 import { DialogComponent } from './dialog/dialog.component';
 import { ScoreCardComponent } from './score-card/score-card.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     BrowserModule,
     AppRoutingModule,
     MaterialModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

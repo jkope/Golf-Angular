@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { CoursesService } from '../api/courses.service';
+
 
 @Component({
   selector: 'app-dialog',
@@ -6,10 +8,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./dialog.component.scss']
 })
 export class DialogComponent implements OnInit {
+  courses: any;
 
-  constructor() { }
+  constructor(private coursesService: CoursesService) { }
 
   ngOnInit() {
   }
+
+
 
 }

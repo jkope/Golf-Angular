@@ -1,3 +1,22 @@
-<p>
-  dialog works!
-</p>
+<div>
+  <h4>Select a Course</h4>
+  <select name="courses" id="courseSelect" onchange="setCourse(this.value)">
+    <option value=""></option>
+  </select>
+</div>
+
+<h4>Player Info</h4>
+<div>
+  <div>
+    <input type="text" placeholder="Name">
+    <button (click)="list()">
+      <i>add</i>
+    </button>
+  </div>
+
+  <div class="playerList">
+  </div>
+</div>
+<div>
+  <button routerLink="/game">View Card</button>
+</div>

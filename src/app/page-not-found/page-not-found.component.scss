@@ -1,0 +1,17 @@
+
+.cent {
+    height: calc(100% - 64px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2em;
+    background-image: url('http://www.rantlifestyle.com/wp-content/uploads/2014/04/Golf-Etiquette.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    color: white;
+}
+.col {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
