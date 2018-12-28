@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CoursesService } from '../api/courses.service';
 import { Courses } from '../courses';
+import { Course } from '../course';
 
 
 
@@ -10,19 +11,29 @@ import { Courses } from '../courses';
   styleUrls: ['./dialog.component.scss']
 })
 export class DialogComponent implements OnInit {
-  courses;
-
+  courses: Courses[];
+  course: Course;
   test: 'test';
+  teeId: number;
 
   constructor(private _coursesService: CoursesService) { }
 
   ngOnInit() {
     this._coursesService.getCourses()
-    .subscribe(data => this.courses = data);
+    .subscribe((data: {courses: Courses[]} ) => this.courses = data.courses);
   }
 
 
   log() {
-    console.log(this.courses);
+    console.log(this.teeId);
+  }
+
+  getCourseData(id: number) {
+    this._coursesService.getCourseDetail(id)
+    .subscribe((data: {data: Course}) => this.course = data.data);
+  }
+
+  setTeeId(id: number) {  // not getting a number back but just the 'tee.teeTypeId'
+    this.teeId = id;
   }
 }
