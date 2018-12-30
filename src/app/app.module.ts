@@ -8,19 +8,23 @@ import { DialogComponent } from './dialog/dialog.component';
 import { ScoreCardComponent } from './score-card/score-card.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { HttpClientModule } from '@angular/common/http';
+import { AddPlayersComponent } from './dialog/add-players.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
     AppComponent,
     DialogComponent,
     ScoreCardComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    AddPlayersComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     MaterialModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

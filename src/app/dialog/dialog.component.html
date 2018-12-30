@@ -12,16 +12,14 @@
   <div *ngIf="this.course">
     <h2>Select a Tee Box</h2>
     <select name="tees" id="tee" (change)="setTeeId($event.target.value)">
-    <option *ngFor="let tee of course.holes[0].teeBoxes" value="tee.teeTypeId">{{ tee.teeType }}</option>
+      <option value="">Select a Tee</option>
+      <option *ngFor="let tee of course.holes[0].teeBoxes" value="{{ tee.teeTypeId }}">{{ tee.teeType }}</option>
     </select>
   </div>
 
-  <div>
-    <button (click)="log()">
-      <i>log</i>
-    </button> 
-  </div>
+  <app-add-players [teeId]="teeId"></app-add-players>
+  
 </div>
 <div>
-  <button routerLink="/game">View Card</button>
+  <button routerLink="/game">Start Game</button>
 </div>

@@ -13,8 +13,7 @@ import { Course } from '../course';
 export class DialogComponent implements OnInit {
   courses: Courses[];
   course: Course;
-  test: 'test';
-  teeId: number;
+  public teeId: number;
 
   constructor(private _coursesService: CoursesService) { }
 
@@ -29,11 +28,12 @@ export class DialogComponent implements OnInit {
   }
 
   getCourseData(id: number) {
+    this.teeId = null;
     this._coursesService.getCourseDetail(id)
     .subscribe((data: {data: Course}) => this.course = data.data);
   }
 
-  setTeeId(id: number) {  // not getting a number back but just the 'tee.teeTypeId'
+  setTeeId(id: number) {
     this.teeId = id;
   }
 }
