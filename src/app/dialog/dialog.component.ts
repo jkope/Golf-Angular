@@ -30,6 +30,7 @@ export class DialogComponent implements OnInit {
   }
 
   setTeeId(id: number) {
+    this._coursesService.setTeeId(id);
     this.teeId = id;
   }
 }

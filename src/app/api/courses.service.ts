@@ -8,6 +8,7 @@ import { Observable } from 'rxjs';
 })
 export class CoursesService {
 course: Observable <object>;
+teeId: number;
   constructor(private http: HttpClient) { }
 
   getCourses() {
@@ -20,6 +21,14 @@ course: Observable <object>;
 
   getCourseDetail() {
     return this.course;
+  }
+
+  setTeeId(id: number) {
+    this.teeId = id;
+  }
+
+  getTeeId() {
+    return this.teeId;
   }
 
 }
