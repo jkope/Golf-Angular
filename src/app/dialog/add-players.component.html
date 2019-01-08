@@ -1,8 +1,13 @@
 <div *ngIf="teeId">
 
-  <form class="name">
+  <form class="name" onSubmit="return false;" [formGroup]="form">
     <mat-form-field class="example-full-width">
-      <input matInput placeholder="Player Name" value="">
+      <div *ngIf='this.players'>
+        <div *ngFor='let player of players'>
+          <input matInput placeholder="" value="{{ player.name }}">
+        </div>
+      </div>
+      <input matInput placeholder="Player Name" value="" formControlName="name">
     </mat-form-field>
    </form>
 

@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
 
 
 @Component({
@@ -11,7 +12,14 @@ import { Component, OnInit, Input } from '@angular/core';
 export class AddPlayersComponent implements OnInit {
   @Input() public teeId: number;
 
-  constructor() { }
+
+  form: FormGroup;
+
+  constructor(formBuild: FormBuilder) {
+    this.form = formBuild.group({
+        name: ['']
+    });
+  }
 
   ngOnInit() {
   }

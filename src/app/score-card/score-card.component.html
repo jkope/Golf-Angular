@@ -1,96 +1,46 @@
 <div class="cent">
-  <h1> Course Title Here</h1>
+  <h1> {{ course.name }}</h1>
 
-  <!-- header -->
-  <div class="row" >
-
-    <div>&nbsp;</div>
-    
-    <div class="holes">
-      <div >1st hole</div>
-      <!-- *ngFor=" " for holes 1-9 -->
-    </div>
-    
-    <div>Out Score</div>
-    
-    <div class="holes">
-      <div>10th hole</div>
-      <!-- *ngFor=" " for holes 10-18 -->
+  <div class="mainBody">
+    <div class="names">
+     <div>Holes</div>
+     <div>Yardage</div>
+      <div>Handicap</div>
+      <div>Par</div>
+     <div *ngFor="let player of players">{{ player.name }}</div>
     </div>
     
-    <div>In Score</div>
-    
-    <div>Total</div>
-  
-  </div>
-
-  <!-- Yardage -->
-  <div class="row">
-  
-    <div>Yardage</div>
-  
-    <div class="holes">
-      <div>yards</div>
-      <!-- *ngFor=" " for holes 1-9 -->
+    <div class="col" *ngFor="let hole of course.holes">
+      <div>{{ hole.hole }}</div>
+      <div>{{ hole.teeBoxes[t].yards }}</div>
+      <div>{{ hole.teeBoxes[t].hcp }}</div>
+      <div>{{ hole.teeBoxes[t].par }}</div>
+      <input type="number" *ngFor='let player of players' id="{{ player.name }}">
     </div>
-  
-    <div>&nbsp;</div>
-  
-    <div class="holes">
-      <div>yards</div>
-      <!-- *ngFor=" " for holes 10-18 -->
+      
+    <div class="row">
+      <div class="out">
+        <div>&nbsp;</div>
+        <div>&nbsp;</div>
+        <div>Out Score</div>
+        <div>totalOutScore</div>
+        <div *ngFor="let player of players">{{ player.name}}</div>
+      </div>
+      <div class="out">
+        <div>&nbsp;</div>
+        <div>&nbsp;</div>
+        <div>In Score</div>
+        <div>totalInScore</div>
+        <div *ngFor="let player of players">{{ player.name}}</div>
+      </div>
+      <div class="out">
+        <div>&nbsp;</div>
+        <div>&nbsp;</div>
+        <div>Total Score</div>
+        <div>totalScore</div>
+        <div *ngFor="let player of players">{{ player.name}}</div>
+      </div>
     </div>
-  
-    <div>&nbsp;</div>
-  
-    <div>Total Yards</div>
-  
-  </div>
-
-  <!-- Handicap -->
-  <div class="row">
-  
-    <div>Handicap</div>
-  
-    <div class="holes">
-      <div>caps</div>
-      <!-- *ngFor=" " for holes 1-9 -->
-    </div>
-  
-    <div>&nbsp;</div>
-  
-    <div class="holes">
-      <div>caps</div>
-      <!-- *ngFor=" " for holes 10-18 -->
-    </div>
-  
-    <div>&nbsp;</div>
-  
-    <div>&nbsp;</div>
-  
-  </div>
-
-  <!-- par -->
-  <div class="row">
-  
-    <div>Par</div>
-  
-    <div class="holes">
-      <div>pars</div>
-      <!-- *ngFor=" " for holes 1-9 -->
-    </div>
-  
-    <div>Out Par</div>
-  
-    <div class="holes">
-      <div>pars</div>
-      <!-- *ngFor=" " for holes 10-18 -->
-    </div>
-  
-    <div>In Par</div>
-  
-    <div>Total Par</div>
-  
   </div>
 
 </div>

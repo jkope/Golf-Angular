@@ -22,14 +22,10 @@ export class DialogComponent implements OnInit {
     .subscribe((data: {courses: Courses[]} ) => this.courses = data.courses);
   }
 
-
-  log() {
-    console.log(this.teeId);
-  }
-
   getCourseData(id: number) {
     this.teeId = null;
-    this._coursesService.getCourseDetail(id)
+    this._coursesService.setCourseDetail(id);
+    this._coursesService.getCourseDetail()
     .subscribe((data: {data: Course}) => this.course = data.data);
   }
 
