@@ -9,15 +9,16 @@
     </div>
   </div>
 
-  <div *ngIf="this.course">
+  <div *ngIf="this.game.courseId">
     <h2>Select a Tee Box</h2>
     <select name="tees" id="tee" (change)="setTeeId($event.target.value)">
       <option value="">Select a Tee</option>
-      <option *ngFor="let tee of course.holes[0].teeBoxes" value="{{ tee.teeTypeId }}">{{ tee.teeType }}</option>
+      <option *ngFor="let tee of course?.holes[0].teeBoxes" value="{{ tee.teeTypeId }}">{{ tee.teeType }}</option>
     </select>
   </div>
 
-  <app-add-players [teeId]="teeId"></app-add-players>
+
+  <app-add-players></app-add-players>
   
 </div>
 <div>

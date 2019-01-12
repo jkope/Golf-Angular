@@ -1,14 +1,17 @@
-<div *ngIf="teeId">
 
-  <form class="name" onSubmit="return false;" [formGroup]="form">
-    <mat-form-field class="example-full-width">
-      <div *ngIf='this.players'>
-        <div *ngFor='let player of players'>
-          <input matInput placeholder="" value="{{ player.name }}">
-        </div>
+<div class="name">
+  <mat-form-field *ngFor="let player of game?.players; let i = index" class="example-full-width">
+      <div >
+        <input  matInput placeholder="Player Name" [(ngModel)]="player.name">
+        <button mat-raised-button (click)="removePlayer(i)">Remove Player</button>
       </div>
-      <input matInput placeholder="Player Name" value="" formControlName="name">
-    </mat-form-field>
-   </form>
-
+  </mat-form-field >
+      <button mat-raised-button (click)="updatePlayer()">Save Changes</button>
+  <mat-form-field>
+      <div>
+        <input matInput placeholder="New Player Name" #playerNew value="">
+      </div>
+  </mat-form-field>
+  <button (click)="addPlayer(playerNew.value)">Add New</button>
 </div>
+

@@ -2,6 +2,9 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Course } from '../course';
 import { CoursesService } from '../api/courses.service';
 import { DialogComponent } from '../dialog/dialog.component';
+import { GameService } from '../api/game.service';
+import { Player } from '@angular/core/src/render3/interfaces/player';
+import { ScoringService } from './scoring.service';
 
 @Component({
   selector: 'app-score-card',
@@ -10,31 +13,36 @@ import { DialogComponent } from '../dialog/dialog.component';
 })
 export class ScoreCardComponent implements OnInit {
 
-  course: Course;
-  teeId: number;
+  course: any;
+  game: any;
+  players: any;
   t: number;
-  players = [
-    { name: 'Jake'},
-    { name: 'Vera'},
-    { name: 'Harry'}
-  ];
+  coursePars: number[];
+  courseOut: number;
+  courseIn: number;
+  courseTotal: number;
 
-  constructor(private _coursesService: CoursesService) {  }
+  constructor (
+    private _coursesService: CoursesService,
+    private _gameService: GameService,
+    private _scoringService: ScoringService
+    ) {  }
 
-  getCourseData() {
-    this._coursesService.getCourseDetail()
-      .subscribe((data: { data: Course }) => this.course = (data.data));
-  }
-
-  getTeeId() {
-    this.teeId = this._coursesService.getTeeId();
-    this.t = this.teeId - 1;
-  }
 
   ngOnInit() {
-    this.getCourseData();
-    this.getTeeId();
-    console.log(this.teeId);
+    this._gameService.getGameObs().subscribe(game => this.game = game);
+    this.setCousreArray();
+    this.course = this._coursesService.course;
+    this.t = this._coursesService.teeId - 1;
+    this.players = this.game.players;
+    this.courseOut = this._scoringService.totalOfScore(this.coursePars);
+    console.log(this.coursePars);
+    }
+
+  setCousreArray(): void {
+    this.course.holes[this.t].par.forEach( x => {
+      this.coursePars.push(x);
+    });
   }
 
 }

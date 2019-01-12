@@ -20,7 +20,7 @@ export class ScoringService {
     this.instroke = scores.slice(9, 18);
     return this.instroke.map((score) => (score ? score : 0)).reduce((a, b) => a + b, 0) - par;
   }
-  totalofScore(scores: number[]) {
+  totalOfScore(scores: number[]) {
     return scores.map((score) => (score ? score : 0)).reduce((a, b) => a + b, 0);
   }
 

@@ -1,21 +1,21 @@
-<div class="cent">
-  <h1> {{ course.name }}</h1>
+<div class="cent" *ngIf="this.course">
 
+  <h1> {{ course?.name }}</h1>
   <div class="mainBody">
     <div class="names">
      <div>Holes</div>
      <div>Yardage</div>
       <div>Handicap</div>
       <div>Par</div>
-     <div *ngFor="let player of players">{{ player.name }}</div>
+     <div *ngFor="let player of game?.players">{{ player.name }}</div>
     </div>
     
-    <div class="col" *ngFor="let hole of course.holes">
+    <div class="col" *ngFor="let hole of course?.holes">
       <div>{{ hole.hole }}</div>
       <div>{{ hole.teeBoxes[t].yards }}</div>
       <div>{{ hole.teeBoxes[t].hcp }}</div>
       <div>{{ hole.teeBoxes[t].par }}</div>
-      <input type="number" *ngFor='let player of players' id="{{ player.name }}">
+      <input type="number" *ngFor='let player of game?.players' id="{{ player.name }}">
     </div>
       
     <div class="row">
@@ -23,22 +23,22 @@
         <div>&nbsp;</div>
         <div>&nbsp;</div>
         <div>Out Score</div>
-        <div>totalOutScore</div>
-        <div *ngFor="let player of players">{{ player.name}}</div>
+        <div>{{ courseOut }}</div>
+        <div *ngFor="let player of game?.players">{{ player.scores }}</div>
       </div>
       <div class="out">
         <div>&nbsp;</div>
         <div>&nbsp;</div>
         <div>In Score</div>
         <div>totalInScore</div>
-        <div *ngFor="let player of players">{{ player.name}}</div>
+        <div *ngFor="let player of game?.players">{{ player.name}}</div>
       </div>
       <div class="out">
         <div>&nbsp;</div>
         <div>&nbsp;</div>
         <div>Total Score</div>
         <div>totalScore</div>
-        <div *ngFor="let player of players">{{ player.name}}</div>
+        <div *ngFor="let player of game?.players">{{ player.name}}</div>
       </div>
     </div>
   </div>
