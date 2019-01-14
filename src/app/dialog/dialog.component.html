@@ -1,26 +1,38 @@
 
 <div class="col">
+  
+  <mat-form-field>
+    <mat-select [(ngModel)]="game.courseId" name="courses" id="course" (selectionChange)="setCourse($event.value)" placeholder="Select a Course">
+      <mat-option *ngFor="let course of courses" value="{{ course.id }}">{{ course.name }}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+
+  <mat-form-field>
+    <mat-select  name="tees" id="tee" (selectionChange)="setTeeId($event.value)" placeholder="Select a Tee">
+      <mat-option *ngFor="let tee of game?.course.holes[0].teeBoxes; let i = index" value="{{ i }}" >{{ tee.teeType }}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <div *ngFor="let player of game?.players; let i = index">
+    <mat-form-field  class="example-full-width">
+        <input matInput placeholder="Player Name" 
+        [ngModel]="player.name | nameChecker : game.players"
+        (ngModelChange)="player.name=$event">
+    </mat-form-field>
+     <button mat-raised-button (click)="removePlayer(i)">Remove Player</button>
+  </div>
+
   <div>
-    <h2>Select Your Course</h2>
-    <div class="row">
-      <div *ngFor="let course of courses">
-        <button mat-raised-button color="primary" (click)="getCourseData(course.id)">{{ course.name }}</button>
-      </div>
-    </div>
-  </div>
-
-  <div *ngIf="this.game.courseId">
-    <h2>Select a Tee Box</h2>
-    <select name="tees" id="tee" (change)="setTeeId($event.target.value)">
-      <option value="">Select a Tee</option>
-      <option *ngFor="let tee of course?.holes[0].teeBoxes" value="{{ tee.teeTypeId }}">{{ tee.teeType }}</option>
-    </select>
+    <mat-form-field>
+      <input matInput placeholder="New Player Name" #playerNew [(ngModel)]="newName">
+    </mat-form-field>
+    <button (click)="addPlayer()">add</button>
   </div>
 
 
-  <app-add-players></app-add-players>
   
 </div>
 <div>
-  <button routerLink="/game">Start Game</button>
+  <button mat-raised-button primary (click)="updateGame()" routerLink="/game">Start Game</button>
 </div>

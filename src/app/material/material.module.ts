@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MatToolbarModule, MatButtonModule, MatFormFieldModule, MatInputModule } from '@angular/material';
+import { MatToolbarModule, MatButtonModule, MatFormFieldModule, MatInputModule, MatSelectModule, MatIconModule, MatIconRegistry
+ } from '@angular/material';
 import { BrowserModule } from '@angular/platform-browser';
 
 
@@ -9,6 +10,9 @@ import { BrowserModule } from '@angular/platform-browser';
   imports: [
     CommonModule,
     BrowserModule,
+    MatSelectModule,
+    MatFormFieldModule,
+    MatIconModule,
   ],
   exports: [
     MatToolbarModule,
@@ -16,6 +20,9 @@ import { BrowserModule } from '@angular/platform-browser';
     MatFormFieldModule,
     MatInputModule,
     BrowserModule,
+    MatSelectModule,
+    MatFormFieldModule,
+    MatIconModule,
   ]
 })
 export class MaterialModule { }

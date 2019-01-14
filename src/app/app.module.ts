@@ -8,12 +8,12 @@ import { DialogComponent } from './dialog/dialog.component';
 import { ScoreCardComponent } from './score-card/score-card.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { HttpClientModule } from '@angular/common/http';
-import { AddPlayersComponent } from './dialog/add-players.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { AngularFireModule } from '@angular/fire';
 import { environment } from '../environments/environment';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
+import { NameCheckerPipe } from './dialog/name-checker.pipe';
 
 @NgModule({
   declarations: [
@@ -21,7 +21,7 @@ import { AngularFireDatabaseModule } from '@angular/fire/database';
     DialogComponent,
     ScoreCardComponent,
     PageNotFoundComponent,
-    AddPlayersComponent
+    NameCheckerPipe,
   ],
   imports: [
     BrowserModule,

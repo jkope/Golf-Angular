@@ -17,36 +17,60 @@ import { GameService } from '../api/game.service';
 export class DialogComponent implements OnInit {
   courses: Courses[];
   course: Course;
-  public teeId: number;
   game: any;
+  newName = '';
 
-  constructor(private _coursesService: CoursesService, private _gameService: GameService) {
-    this._gameService.getGameObs().subscribe(game => this.game = game);
-  }
 
+  constructor(
+    private _coursesService: CoursesService,
+    private _gameService: GameService
+    ) { }
 
 
   ngOnInit() {
-    console.log(this.game);
+    this._gameService.getGameObs().subscribe(game => this.game = game);
     this._coursesService.getCourses()
     .subscribe((data: {courses: Courses[]} ) => this.courses = data.courses);
-
   }
 
-  getCourseData(id: number) {
+  setCourse (id: number) {
     this.game.teeId = null;
     this.game.courseId = id;
-    this._gameService.saveGame(this.game);
     this._coursesService.getCourseDetail(id)
-    .subscribe((data: {data: Course}) => this.course = data.data);
-    this._coursesService.setCourse();
+    .subscribe((data: {data: Course}) => this.game.course = data.data);
+    // this._gameService.saveGame(this.game);
   }
 
   setTeeId(id: number) {
     this.game.teeId = id;
-    this._gameService.saveGame(this.game);
-    this._coursesService.setTeeId(id);
-    this.teeId = id;
+    // this._gameService.saveGame(this.game);
     console.log(this.course);
+    console.log(this.game);
+  }
+
+  addPlayer(playerName: string) {
+    // tslint:disable-next-line:no-unused-expression
+    this.game.players ? '' : this.game.players = [];
+    const player = {
+      name: this.newName,
+      scores: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+    };
+    this.game.players.push(player);
+    // this._gameService.saveGame(this.game);
+    this.newName = '';
+    console.log(this.game);
+
+  }
+
+  removePlayer(index) {
+    this.game.players.splice(index, 1);
+    // this._gameService.saveGame(this.game);
+    console.log(this.game);
+  }
+
+  updateGame() {
+    this._gameService.saveGame(this.game);
+    console.log(this.game);
+
   }
 }

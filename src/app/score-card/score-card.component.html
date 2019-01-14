@@ -1,6 +1,6 @@
-<div class="cent" *ngIf="this.course">
+<div class="cent">
 
-  <h1> {{ course?.name }}</h1>
+  <h1> {{ game?.course.name }}</h1>
   <div class="mainBody">
     <div class="names">
      <div>Holes</div>
@@ -10,12 +10,13 @@
      <div *ngFor="let player of game?.players">{{ player.name }}</div>
     </div>
     
-    <div class="col" *ngFor="let hole of course?.holes">
+    <div class="col" *ngFor="let hole of game?.course.holes; let i = index">
       <div>{{ hole.hole }}</div>
-      <div>{{ hole.teeBoxes[t].yards }}</div>
-      <div>{{ hole.teeBoxes[t].hcp }}</div>
-      <div>{{ hole.teeBoxes[t].par }}</div>
-      <input type="number" *ngFor='let player of game?.players' id="{{ player.name }}">
+      <div>{{ hole.teeBoxes[game.teeId].yards }}</div>
+      <div>{{ hole.teeBoxes[game.teeId].hcp }}</div>
+      <div>{{ hole.teeBoxes[game.teeId].par }}</div>
+      <input type="number"  *ngFor='let player of game?.players' 
+              [(ngModel)]="player.scores[i]" id="{{ player.name }}">
     </div>
       
     <div class="row">
@@ -24,23 +25,25 @@
         <div>&nbsp;</div>
         <div>Out Score</div>
         <div>{{ courseOut }}</div>
-        <div *ngFor="let player of game?.players">{{ player.scores }}</div>
+        <div *ngFor="let player of game?.players">{{ this._scoringService.calculateOutScore(courseOut ,player.scores) }}</div>
       </div>
       <div class="out">
         <div>&nbsp;</div>
         <div>&nbsp;</div>
         <div>In Score</div>
-        <div>totalInScore</div>
-        <div *ngFor="let player of game?.players">{{ player.name}}</div>
+        <div>{{ courseIn }}</div>
+        <div *ngFor="let player of game?.players">{{ this._scoringService.calculateInScore(courseIn, player.scores)}}</div>
       </div>
       <div class="out">
         <div>&nbsp;</div>
         <div>&nbsp;</div>
         <div>Total Score</div>
-        <div>totalScore</div>
-        <div *ngFor="let player of game?.players">{{ player.name}}</div>
+        <div>{{ courseTotal }}</div>
+        <div *ngFor="let player of game?.players">{{ this._scoringService.totalOfScore(courseTotal, player.scores)}}</div>
       </div>
     </div>
   </div>
 
 </div>
+<button (click)="log()">Log</button>
+<button (click)="setCourseScores()">set</button>
