@@ -6,6 +6,7 @@ import { AngularFireDatabase} from '@angular/fire/database';
 import { Observable } from 'rxjs';
 import { Game } from '../game';
 import { GameService } from '../api/game.service';
+import { NameCheckerPipe } from './name-checker.pipe';
 
 
 
@@ -23,7 +24,8 @@ export class DialogComponent implements OnInit {
 
   constructor(
     private _coursesService: CoursesService,
-    private _gameService: GameService
+    private _gameService: GameService,
+    private nameChecker: NameCheckerPipe
     ) { }
 
 
@@ -48,11 +50,12 @@ export class DialogComponent implements OnInit {
     console.log(this.game);
   }
 
-  addPlayer(playerName: string) {
+  addPlayer() {
     // tslint:disable-next-line:no-unused-expression
     this.game.players ? '' : this.game.players = [];
+    const checkedName = this.nameChecker.transform(this.newName, this.game.players);
     const player = {
-      name: this.newName,
+      name: checkedName,
       scores: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
     };
     this.game.players.push(player);

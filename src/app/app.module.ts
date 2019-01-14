@@ -35,7 +35,7 @@ import { NameCheckerPipe } from './dialog/name-checker.pipe';
     AngularFireModule,
     AngularFireDatabaseModule
   ],
-  providers: [],
+  providers: [NameCheckerPipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

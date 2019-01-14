@@ -26,28 +26,26 @@ export class ScoreCardComponent implements OnInit {
     private _coursesService: CoursesService,
     private _gameService: GameService,
     private _scoringService: ScoringService
-    ) {
-    // this._gameService.getGameObs().subscribe(game => this.game = game);
-  }
+    ) { }
 
 
   ngOnInit() {
-    this._gameService.getGameObs().subscribe(game => this.game = game);
-    this.setCourseScores();
-    // this.course = this.game.course;
-    // this.t = this.game.teeId;
-    this.players = this.game.players;
-    console.log(this.coursePars);
+    this._gameService.getGameObs().subscribe(
+      game => {this.game = game;
+       this.players = this.game.players;
+        this.setCourseScores();
+      });
     }
 
   setCourseScores(): void {
-    this.game.course.holes.forEach( hole => {
+    this.game.course.holes.forEach(hole => {
       this.coursePars.push(hole.teeBoxes[this.game.teeId].par);
+    });
       this.courseIn = this._scoringService.calculateInScore(0, this.coursePars);
       this.courseOut = this._scoringService.calculateOutScore(0, this.coursePars);
       this.courseTotal = this._scoringService.totalOfScore(0, this.coursePars);
-    });
-  }
+    }
+
 
   log() {
     console.log(this.game.teeId);

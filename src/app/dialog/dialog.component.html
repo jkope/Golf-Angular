@@ -17,15 +17,15 @@
   <div *ngFor="let player of game?.players; let i = index">
     <mat-form-field  class="example-full-width">
         <input matInput placeholder="Player Name" 
-        [ngModel]="player.name | nameChecker : game.players"
-        (ngModelChange)="player.name=$event">
+        [(ngModel)]="player.name">
     </mat-form-field>
      <button mat-raised-button (click)="removePlayer(i)">Remove Player</button>
   </div>
 
   <div>
     <mat-form-field>
-      <input matInput placeholder="New Player Name" #playerNew [(ngModel)]="newName">
+      <input matInput placeholder="New Player Name" #playerNew 
+      [(ngModel)]="newName">
     </mat-form-field>
     <button (click)="addPlayer()">add</button>
   </div>
