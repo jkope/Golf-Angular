@@ -15,14 +15,15 @@
       <div>{{ hole.teeBoxes[game.teeId].yards }}</div>
       <div>{{ hole.teeBoxes[game.teeId].hcp }}</div>
       <div>{{ hole.teeBoxes[game.teeId].par }}</div>
-      <input type="number"  *ngFor='let player of game?.players' 
-              [(ngModel)]="player.scores[i]" id="{{ player.name }}">
+      <input  type="number"  *ngFor='let player of game?.players' 
+        (blur)="completionChecker(player.scores)"       
+        [(ngModel)]="player.scores[i]" id="{{ player.name }}">
     </div>
       
     <div class="row">
       <div class="out">
         <div>&nbsp;</div>
-        <div>&nbsp;</div>
+        <div>{{ yardsTotal }} Total Yards</div>
         <div>Out Score</div>
         <div>{{ courseOut }}</div>
         <div *ngFor="let player of game?.players">{{ this._scoringService.calculateOutScore(courseOut ,player.scores) }}</div>
@@ -45,5 +46,5 @@
   </div>
 
 </div>
-<button (click)="log()">Log</button>
-<button (click)="setCourseScores()">set</button>
+<button mat-raised (click)="saveGame()">save</button>
+<button mat-raised (click)="log()">log</button>

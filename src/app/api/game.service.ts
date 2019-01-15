@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Game } from '../game';
 import { AngularFireObject, AngularFireDatabase, AngularFireList } from '@angular/fire/database';
 import { Observable } from 'rxjs';
-import { Player } from '../player';
 
 @Injectable({
   providedIn: 'root'
