@@ -1,50 +1,57 @@
-<div class="cent">
+<mat-card class="cent">
 
-  <h1> {{ game?.course.name }}</h1>
-  <div class="mainBody">
+  <mat-card-title>
+    <h1> {{ game?.course.name }}</h1>
+  </mat-card-title><div class="mainBody">
     <div class="names">
-     <div>Holes</div>
-     <div>Yardage</div>
-      <div>Handicap</div>
-      <div>Par</div>
-     <div *ngFor="let player of game?.players">{{ player.name }}</div>
+    <div class="bold">Holes</div>
+    <div>Yardage ({{yardsTotal}})</div>
+    <div>Handicap</div>
+    <div>Par</div>
+    <div class="tall cap" *ngFor="let player of game?.players">{{ player.name }}</div>
     </div>
     
-    <div class="col" *ngFor="let hole of game?.course.holes; let i = index">
-      <div>{{ hole.hole }}</div>
-      <div>{{ hole.teeBoxes[game.teeId].yards }}</div>
-      <div>{{ hole.teeBoxes[game.teeId].hcp }}</div>
-      <div>{{ hole.teeBoxes[game.teeId].par }}</div>
-      <input  type="number"  *ngFor='let player of game?.players' 
+    <div class="col" *ngFor="let hole of game?.course?.holes; let i = index">
+      <div class="underline">{{ hole.hole }}</div>
+      <div class="center">{{ hole.teeBoxes[game.teeId].yards }}</div>
+      <div class="center">{{ hole.teeBoxes[game.teeId].hcp }}</div>
+      <div class="center">{{ hole.teeBoxes[game.teeId].par }}</div>
+      <input class="center"  type="number" min='0' *ngFor='let player of game?.players' 
         (blur)="completionChecker(player.scores)"       
         [(ngModel)]="player.scores[i]" id="{{ player.name }}">
     </div>
       
-    <div class="row">
+    <div class="row totals center">
       <div class="out">
-        <div>&nbsp;</div>
-        <div>{{ yardsTotal }} Total Yards</div>
-        <div>Out Score</div>
+        <div class="smaller">&nbsp;</div>
+        <div class="bold">Out</div>
+        <div class="bold">Score</div>
         <div>{{ courseOut }}</div>
-        <div *ngFor="let player of game?.players">{{ this._scoringService.calculateOutScore(courseOut ,player.scores) }}</div>
+        <div class="tall" *ngFor="let player of game?.players">{{ this._scoringService.calculateOutScore(courseOut ,player.scores) }}</div>
       </div>
       <div class="out">
-        <div>&nbsp;</div>
-        <div>&nbsp;</div>
-        <div>In Score</div>
+        <div class="smaller">&nbsp;</div>
+        <div class="bold">In</div>
+        <div class="bold">Score</div>
         <div>{{ courseIn }}</div>
-        <div *ngFor="let player of game?.players">{{ this._scoringService.calculateInScore(courseIn, player.scores)}}</div>
+        <div class="tall" *ngFor="let player of game?.players">{{ this._scoringService.calculateInScore(courseIn, player.scores)}}</div>
       </div>
       <div class="out">
-        <div>&nbsp;</div>
-        <div>&nbsp;</div>
-        <div>Total Score</div>
+        <div class="smaller">&nbsp;</div>
+        <div class="bold">Total</div>
+        <div class="bold">Score</div>
         <div>{{ courseTotal }}</div>
-        <div *ngFor="let player of game?.players">{{ this._scoringService.totalOfScore(courseTotal, player.scores)}}</div>
+        <div class="tall" *ngFor="let player of game?.players">{{ this._scoringService.totalOfScore(courseTotal, player.scores)}}</div>
       </div>
     </div>
   </div>
+  <mat-card-footer>
+    <mat-card-actions>
+      <button mat-raised-button color="secondary" (click)="newGame()" routerLink="/edit" routerLinkActive="active">New Game</button>
+      <button mat-raised-button color="secondary"(click)="saveGame()" routerLink="/edit" routerLinkActive="active">Game Options</button>
+      <button mat-raised-button color="primary" (click)="updateGame()">Save</button>
+    </mat-card-actions>
+  </mat-card-footer>
 
-</div>
-<button mat-raised (click)="saveGame()">save</button>
-<button mat-raised (click)="log()">log</button>
+</mat-card>
+

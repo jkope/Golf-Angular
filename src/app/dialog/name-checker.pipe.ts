@@ -6,11 +6,12 @@ import { Player } from '../player';
 })
 export class NameCheckerPipe implements PipeTransform {
 change: string;
-  transform(value: any, players: Player[]): any {
-    if (players.filter( x => x.name === value).length > 0) {
-    this.change = value + Math.floor(Math.random() * 100);
+  transform(value: string, players: Player[]): any {
+    const valuecap = value.toLowerCase();
+    if (players.filter( x => x.name === valuecap).length > 0) {
+    this.change = valuecap + Math.floor(Math.random() * 100);
     } else {
-      this.change = value;
+      this.change = valuecap;
     }
     return this.change;
   }

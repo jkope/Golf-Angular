@@ -4,6 +4,10 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    margin: 3em;
+}
+.center{
+    text-align: center;
 }
 .mainBody {
     display: flex;
@@ -16,4 +20,41 @@
     display: flex;
     width: 30px;
     flex-direction: column;
+}
+.underline {
+    border-bottom: 1px gray solid;
+    text-align: center;
+    font-weight: bold;
+    margin-left: 5px;
+    margin-right: 5px;
+    font-size: 1.25em;
+}
+.bold {
+    font-size: 1.25em;
+    font-weight: bold;
+}
+.names {
+    padding-right: 1em;
+    div{
+        white-space: nowrap;
+    }
+}
+.tall {
+    min-height: 21.5px;
+}
+.g {
+    min-height: 24px;
+}
+.out {
+    margin-left: 1em;
+    div {
+        white-space: nowrap;
+    }
+}
+.smaller {
+    max-height: 15.5px;
+}
+.cap {
+    font-variant: small-caps;
+    font-weight: 700;
 }

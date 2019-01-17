@@ -8,6 +8,7 @@ import { Player } from '../player';
 
 
 
+
 @Component({
   selector: 'app-dialog',
   templateUrl: './dialog.component.html',
@@ -30,13 +31,16 @@ export class DialogComponent implements OnInit {
   ngOnInit() {
     this._gameService.getGameObs().subscribe(game => {
       this.game = game;
+      this.setCourse(this.game.courseId);
     });
     this._coursesService.getCourses()
-    .subscribe((data: {courses: Courses[]} ) => this.courses = data.courses);
+    .subscribe((data: {courses: Courses[]} ) => {
+      this.courses = data.courses;
+    });
   }
 
   setCourse (id: number) {
-    this.game.teeId = null;
+    this.game.teeId = 0;
     this.game.courseId = id;
     this._coursesService.getCourseDetail(id)
     .subscribe((data: {data: Course}) => this.game.course = data.data);

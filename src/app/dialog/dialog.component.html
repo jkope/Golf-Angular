@@ -1,38 +1,50 @@
 
-<div class="col">
-  
-  <mat-form-field>
-    <mat-select [(ngModel)]="game.courseId" name="courses" id="course" (selectionChange)="setCourse($event.value)" placeholder="Select a Course">
-      <mat-option *ngFor="let course of courses" value="{{ course.id }}">{{ course.name }}</mat-option>
-    </mat-select>
-  </mat-form-field>
+<mat-card class="col">
+  <mat-card-header>
+    <mat-card-title><h1>Game Options</h1></mat-card-title>
+  </mat-card-header>
+  <mat-card-content class="col lrg">
+    <div> 
+      <mat-form-field *ngIf="game?.courseId" class="marg">
+        <mat-select [(ngModel)]="game.courseId" name="courses" id="course" (selectionChange)="setCourse($event.value)" placeholder="Select a Course">
+          <mat-option *ngFor="let course of courses" value="{{ course.id }}">{{ course.name }}</mat-option>
+        </mat-select>
+      </mat-form-field>
 
 
-  <mat-form-field>
-    <mat-select  name="tees" id="tee" (selectionChange)="setTeeId($event.value)" placeholder="Select a Tee">
-      <mat-option *ngFor="let tee of game?.course.holes[0].teeBoxes; let i = index" value="{{ i }}" >{{ tee.teeType }}</mat-option>
-    </mat-select>
-  </mat-form-field>
+      <mat-form-field class="marg" *ngIf="game?.course">
+        <mat-select [(ngModel)]="game.teeId" name="tees" id="tee" (selectionChange)="setTeeId($event.value)" placeholder="Select a Tee">
+          <mat-option *ngFor="let tee of game?.course?.holes[0].teeBoxes; let i = index" value="{{ i }}" >{{ tee.teeType }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </mat-card-content>
 
   <div *ngFor="let player of game?.players; let i = index">
     <mat-form-field  class="example-full-width">
-        <input matInput placeholder="Player Name" 
+      <input class="cap" matInput placeholder="Player Name" 
         [(ngModel)]="player.name">
-    </mat-form-field>
-     <button mat-raised-button (click)="removePlayer(i)">Remove Player</button>
+      </mat-form-field>
+      <button mat-icon-button (click)="removePlayer(i)">
+      <mat-icon color="secondary">delete_forever</mat-icon>
+    </button>
   </div>
-
+  
   <div>
     <mat-form-field>
-      <input matInput placeholder="New Player Name" #playerNew 
+      <input color="secondary" matInput placeholder="New Player Name" #playerNew 
       [(ngModel)]="newName">
     </mat-form-field>
-    <button (click)="addPlayer()">add</button>
+    <button mat-icon-button (click)="addPlayer()">
+      <mat-icon color="primary">add_circle</mat-icon>
+    </button>
   </div>
-
-
   
-</div>
-<div>
-  <button mat-raised-button primary (click)="updateGame()" routerLink="/game">Start Game</button>
-</div>
+  
+  <mat-card-footer >
+    <mat-card-actions class="action">
+      <button  mat-raised-button color="primary" (click)="updateGame()" routerLink="/game">Play Game</button>
+    </mat-card-actions>
+  </mat-card-footer>
+  
+</mat-card>
