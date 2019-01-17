@@ -7,7 +7,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 const routes: Routes = [
   { path: 'edit', component: DialogComponent },
   { path: 'game', component: ScoreCardComponent },
-  { path: '', component: ScoreCardComponent },
+  { path: '', component: DialogComponent },
   { path: '**', component: PageNotFoundComponent }
 ];
 
