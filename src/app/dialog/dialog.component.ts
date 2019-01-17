@@ -76,4 +76,11 @@ export class DialogComponent implements OnInit {
     console.log(this.game);
   }
 
+  newGame() {
+    this.game.players = [];
+    this.game.courseId = '18300';
+    this.game.teeId = '0';
+    this.updateGame();
+  }
+
 }

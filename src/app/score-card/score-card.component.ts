@@ -86,20 +86,6 @@ export class ScoreCardComponent implements OnInit, OnDestroy {
     });
   }
 
-  updateGame() {
-    this.saveGame();
-    this.snack('Game Updated');
-  }
-
-  newGame() {
-    // are you sure popup
-    this.game = {courseId: '18300',
-                  teeId: '0'};
-    this.saveGame();
-
-  }
-
-
 }
 
 
