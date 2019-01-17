@@ -30,9 +30,6 @@ teeId: number;
       .subscribe((data: { data: Course }) => this.course = data.data);
   }
 
-  log() {console.log(this.course); }
-
-
   setTeeId(id: number) {
     this.teeId = id;
   }

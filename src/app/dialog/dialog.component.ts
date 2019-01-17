@@ -48,8 +48,6 @@ export class DialogComponent implements OnInit {
 
   setTeeId(id: number) {
     this.game.teeId = id;
-    console.log(this.course);
-    console.log(this.game);
   }
 
   addPlayer() {
@@ -62,18 +60,14 @@ export class DialogComponent implements OnInit {
     };
     this.game.players.push(player);
     this.newName = '';
-    console.log(this.game);
-
   }
 
   removePlayer(index) {
     this.game.players.splice(index, 1);
-    console.log(this.game);
   }
 
   updateGame() {
     this._gameService.saveGame(this.game);
-    console.log(this.game);
   }
 
   newGame() {
